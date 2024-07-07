@@ -1,0 +1,10 @@
+mesh: "/assets/models/ship-ocean-liner.glb"
+name: "ocean-liner"
+materials {
+  name: "colormap"
+  material: "/assets/materials/model.material"
+  textures {
+    sampler: "tex0"
+    texture: "/assets/images/colormap.png"
+  }
+}

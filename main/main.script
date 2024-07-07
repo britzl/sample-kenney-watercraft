@@ -1,0 +1,19 @@
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("@render:", "use_camera_projection")
+	msg.post("camera", "acquire_camera_focus")
+	
+	-- position directional light
+	local light_pos = go.get_position("light")
+	self.light = vmath.vector4(0, 0, go.get_position("camera").z - 8, 0)
+	self.light = vmath.vector4(light_pos.x, light_pos.y, light_pos.z, 0)
+	go.set("#ocean-liner", "light", self.light)
+	go.set("#ocean-liner", "ambient", vmath.vector4(0.5))
+end
+
+function on_input(self, action_id, action)
+	-- move directional light based on input
+	self.light.x = 2 * ((action.x - 480) / 480)
+	self.light.y = 2 * ((action.y - 320) / 320)
+	go.set("#ocean-liner", "light", self.light)
+end
